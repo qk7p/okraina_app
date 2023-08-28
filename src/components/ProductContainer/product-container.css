@@ -9,7 +9,7 @@
   background-color: #f3fee3;
 }
 
-@media (min-width: 376px) {
+@media (min-width: 600px) {
   .product_container {
     display: grid;
     grid-template-columns: 1fr 1fr;
