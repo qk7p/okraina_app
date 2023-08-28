@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigation } from "./components/Navigation/Navigation";
 import { ProductContainer } from "./components/ProductContainer/ProductContainer";
-
+import { getTabs } from "./api/tabsApi";
 
 function App() {
-  const [activeTab, setActiveTab] = useState<number>(5);
+  const [activeTab, setActiveTab] = useState<number>();
+
+  useEffect(() => {
+    getTabs().then((response) => {
+      let maxId = 0;
+      response.data.forEach((element) => {
+        if (element.id > maxId) maxId = element.id;
+        setActiveTab(maxId);
+      });
+    });
+  }, []);
 
   const handleTab = (tabId: number) => {
     setActiveTab(tabId);
@@ -13,7 +23,7 @@ function App() {
   return (
     <>
       <Navigation onChange={handleTab} />
-      <ProductContainer activeTab={activeTab} />
+      {activeTab ? <ProductContainer activeTab={activeTab} /> : null}
     </>
   );
 }
