@@ -5,11 +5,24 @@ export type ProductList = {
         {
           id: number;
           product_name: string;
-          product_value: number | null;
-          product_comment: string | null;
+          product_value: number;
+          product_comment: string;
         }
       ];
     };
+  };
+};
+
+export type ProductListRequest = {
+  data: {
+    product: [
+      {
+        id: number;
+        product_name: string;
+        product_value: number;
+        product_comment: string;
+      }
+    ];
   };
 };
 
@@ -29,9 +42,12 @@ export function getProductList(id: number) {
 }
 
 export function updateProductList(id: number, data: ProductList) {
+  const request: ProductListRequest = {
+    data: { product: data.data.attributes.product },
+  };
   fetch(`https://okraina.qk7p.ru/cms/api/spiskis/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: JSON.stringify(request),
   });
 }

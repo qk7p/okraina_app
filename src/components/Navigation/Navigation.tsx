@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTabs } from "../../api/tabsApi";
 import { Tab } from "../Tab/Tab";
+import "./navigation.css"
 
 type Tab = {
   id: number;
@@ -35,14 +36,14 @@ const Navigation: React.FC<NavigationProps> = ({ onChange }) => {
   }, []);
 
   return (
-    <nav>
+    <ul className={"navigation"}>
       {isLoading
         ? "...загрузка"
         : tabList.map((tab) => (
             <Tab text={tab.date} key={tab.id} id={tab.id} onClick={onChange} />
           ))}
-      <p>{error !== "" && error}</p>
-    </nav>
+      <p className={"navigation__error"}>{error !== "" && error}</p>
+    </ul>
   );
 };
 

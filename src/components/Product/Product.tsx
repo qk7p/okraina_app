@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./product.css";
 
 export type ProductProps = {
   name: string;
@@ -13,6 +14,8 @@ export type ProductProps = {
 const Product: React.FC<ProductProps> = ({
   id,
   name,
+  value,
+  comment,
   onValueBlur,
   onCommentBlur,
 }) => {
@@ -20,8 +23,8 @@ const Product: React.FC<ProductProps> = ({
   const [isError] = useState(false);
   const [errorMessage] = useState("");
 
-  const [productValue, setProductValue] = useState(0);
-  const [productComment, setProductComment] = useState("");
+  const [productValue, setProductValue] = useState(value);
+  const [productComment, setProductComment] = useState(comment);
 
   const handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -44,24 +47,27 @@ const Product: React.FC<ProductProps> = ({
   };
 
   return (
-    <div>
-      <p>{name}</p>
-      <p>Количество:</p>
+    <div className={"product"}>
+      <p className={"product__name"}>{name}</p>
+      <p className={"product__value_label"}>Количество:</p>
       <input
+        className={"product__value"}
         type="number"
         onChange={handleValueChange}
         onBlur={handleValueBlur}
         value={productValue}
       />
-      <p>Комментарий</p>
+      <p className={"product__comment_label"}>Комментарий:</p>
       <input
+        className={"product__comment"}
         type="text"
         onChange={handleCommentChange}
         onBlur={handleCommentBlur}
         value={productComment}
       />
-      <p>Статус:</p>
-      <p>{isLoading ? "загрузка" : isError ? errorMessage : "ок"}</p>
+      {/* <p className={"product__status"}>
+        {isLoading ? "загрузка" : isError ? errorMessage : "ок"}
+      </p> */}
     </div>
   );
 };

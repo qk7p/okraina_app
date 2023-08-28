@@ -5,6 +5,7 @@ import {
   updateProductList,
 } from "../../api/productListApi";
 import { Product } from "../Product/Product";
+import "./product-container.css"
 
 export type ProductContainerProps = {
   activeTab: number;
@@ -23,23 +24,31 @@ const ProductContainer: React.FC<ProductContainerProps> = ({ activeTab }) => {
       const targetIndex = productList.data.attributes.product.findIndex(
         (item) => item.id === id
       );
-      console.log(targetIndex);
 
       if (targetIndex !== undefined) {
         const tempArray = productList;
         tempArray.data.attributes.product[targetIndex].product_value = value;
-        console.log(tempArray);
-        updateProductList(activeTab, tempArray);
+        updateProductList(activeTab, tempArray)
       }
     }
   };
 
   const handleCommentChange = (value: string, id: number) => {
-    console.log(value, id);
+    if (productList) {
+      const targetIndex = productList.data.attributes.product.findIndex(
+        (item) => item.id === id
+      );
+
+      if (targetIndex !== undefined) {
+        const tempArray = productList;
+        tempArray.data.attributes.product[targetIndex].product_comment = value;
+        updateProductList(activeTab, tempArray);
+      }
+    }
   };
 
   return (
-    <div>
+    <div className={"product_container"}>
       {productList
         ? productList.data.attributes.product.map((element, index) => (
             <Product
@@ -48,6 +57,8 @@ const ProductContainer: React.FC<ProductContainerProps> = ({ activeTab }) => {
               onValueBlur={handleValueChange}
               onCommentBlur={handleCommentChange}
               id={element.id}
+              value={element.product_value}
+              comment={element.product_comment}
             />
           ))
         : "загрузка"}

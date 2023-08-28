@@ -1,3 +1,5 @@
+import "./tab.css"
+
 export type TabProps = {
   text: string;
   id: number;
@@ -10,7 +12,7 @@ const Tab: React.FC<TabProps> = ({ text, id, onClick }) => {
     onClick(id);
   };
 
-  return <button onClick={handleClick}>{text}</button>;
+  return <button onClick={handleClick} className={"tab"}>{text}</button>;
 };
 
 export { Tab };

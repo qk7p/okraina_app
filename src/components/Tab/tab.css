@@ -1,0 +1,13 @@
+.tab {
+  padding: 8px;
+  margin: 8px;
+
+  border: 1px solid white;
+  border-radius: 4px;
+  background-color: #255477;
+
+  color: white;
+
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+}
