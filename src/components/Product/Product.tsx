@@ -19,9 +19,9 @@ const Product: React.FC<ProductProps> = ({
   onValueBlur,
   onCommentBlur,
 }) => {
-  const [isLoading] = useState(false);
-  const [isError] = useState(false);
-  const [errorMessage] = useState("");
+  // const [isLoading] = useState(false);
+  // const [isError] = useState(false);
+  // const [errorMessage] = useState("");
 
   const [productValue, setProductValue] = useState(value);
   const [productComment, setProductComment] = useState(comment);
