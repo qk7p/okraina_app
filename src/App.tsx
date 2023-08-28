@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { getTabs } from "./api/tabsApi";
+import { useState } from "react";
 import { Navigation } from "./components/Navigation/Navigation";
 import { ProductContainer } from "./components/ProductContainer/ProductContainer";
 

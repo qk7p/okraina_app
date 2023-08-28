@@ -13,14 +13,12 @@ export type ProductProps = {
 const Product: React.FC<ProductProps> = ({
   id,
   name,
-  comment,
-  image_url,
   onValueBlur,
   onCommentBlur,
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading] = useState(false);
+  const [isError] = useState(false);
+  const [errorMessage] = useState("");
 
   const [productValue, setProductValue] = useState(0);
   const [productComment, setProductComment] = useState("");
